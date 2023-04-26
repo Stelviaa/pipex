@@ -6,7 +6,7 @@
 /*   By: sforesti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 09:54:59 by sforesti          #+#    #+#             */
-/*   Updated: 2023/04/24 16:07:16 by sforesti         ###   ########.fr       */
+/*   Updated: 2023/04/26 13:38:56 by sforesti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,14 @@ void	split_path(t_gnl *gnl, char **envp)
 
 	i = 0;
 	j = 0;
-	while (!ft_strnstr(envp[i], "PATH=", 6))
+	while (envp[i] && ft_strncmp(envp[i], "PATH=", 5))
 		i ++;
 	while (envp[j])
 		j ++;
 	if (j && j == i)
 	{
-		gnl->path = ft_split("PATH=/Users/sforesti/.brew/bin:/Users/sforesti\
-            /.rbenv/shims:/Users/sforesti/.rbenv/shims:/usr/local/bin:/usr/bin\
-            :/bin:/usr/sbin:/sbin:/usr/local/munki:/Users/sforesti/.brew/bin:\
-			/Users/sforesti/.rbenv/shims:/Users/sforesti/.rbenv/bin", "PATH=:");
-		return ;
+		ft_printf("%serror%s\nnot env\n", RED, END);
+		exit (EXIT_FAILURE);
 	}
 	gnl->path = ft_split(envp[i], "PATH=:");
 }

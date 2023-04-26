@@ -6,7 +6,7 @@
 /*   By: sforesti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 21:43:44 by sforesti          #+#    #+#             */
-/*   Updated: 2023/04/24 16:04:37 by sforesti         ###   ########.fr       */
+/*   Updated: 2023/04/26 13:50:59 by sforesti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,18 @@ void	initialisation(t_gnl *gnl, char **av, char **envp, int ac)
 {
 	int		pid_status;
 
+	if (ac == 1)
+	{
+		free (gnl);
+		exit(EXIT_FAILURE);
+	}
+	if (!ft_strcmp(av[1], "here_doc") && ac < 6)
+	{
+		ft_printf("%serror%s\nbad number of arguments\n", RED, END);
+		exit(EXIT_FAILURE);
+	}
+	else if (ac < 5)
+		exit_managing(4);
 	gnl->ac = ac;
 	split_path(gnl, envp);
 	gnl->index = 2;
