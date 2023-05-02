@@ -17,7 +17,7 @@ OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 all:	$(NAME)
 
 $(NAME):	$(OBJS)
-			make -C libft
+			make -C libft -s
 			$(CC) -o $(NAME) $(OBJS) $(LIBS)
 
 bonus: $(NAME_BONUS)
